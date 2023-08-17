@@ -1,0 +1,110 @@
+<div id="addcompany">
+  <div class="container-addcompany">
+    <h2 class="title">Thêm công ty mới</h2>
+    <form action="your-action" (submit)="onFormSubmit()">
+      <div class="dx-field">
+        <div class="dx-field-label">Tên công ty</div>
+        <div class="dx-field-value">
+          <dx-text-box
+            [(value)]="nameCompany"
+            [showClearButton]="true"
+            label="Tên công ty"
+            labelMode="floating"
+          >
+            <dx-validator>
+              <dxi-validation-rule
+                type="required"
+                message="Vui lòng nhập vào trường này"
+              ></dxi-validation-rule>
+              <!-- <dxi-validation-rule
+                type="pattern"
+                [pattern]="stringPattern"
+              ></dxi-validation-rule> -->
+            </dx-validator>
+          </dx-text-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div class="dx-field-label">Số điện thoại</div>
+        <div class="dx-field-value">
+          <dx-text-box
+            [(value)]="phoneCompany"
+            [showClearButton]="true"
+            mask="HHHHHHHHHH"
+            [maskRules]="maskRules"
+            [showClearButton]="true"
+          >
+            <dx-validator>
+              <dxi-validation-rule
+                type="required"
+                [max]="12"
+                message="Vui lòng nhập vào trường này"
+              ></dxi-validation-rule>
+            </dx-validator>
+          </dx-text-box>
+        </div>
+      </div>
+      <div class="dx-field">
+        <div class="dx-field-label">Địa chỉ công ty</div>
+        <div class="dx-field-value">
+          <dx-text-box
+            [(value)]="addressCompany"
+            [showClearButton]="true"
+            label="Địa chỉ công ty"
+            labelMode="floating"
+          >
+            <dx-validator>
+              <!-- <dxi-validation-rule
+                type="pattern"
+                [pattern]="stringPattern"
+              ></dxi-validation-rule> -->
+              <dxi-validation-rule
+                type="required"
+                message="Vui lòng nhập vào trường này"
+              ></dxi-validation-rule>
+            </dx-validator>
+          </dx-text-box>
+        </div>
+      </div>
+      <div class="dx-fieldset">
+        <dx-button
+          width="77.6%"
+          id="button"
+          text="Register"
+          type="success"
+          [useSubmitBehavior]="true"
+        >
+        </dx-button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- <div id="addcompany">
+  <div class="container-addcompany">
+    <h2 class="title">Thêm công ty mới</h2>
+    <dx-form [width]="500" Template="abc">
+      <dxi-item dataField="name">
+        <dxo-label text="Tên công ty"></dxo-label>
+        <dxi-validation-rule
+          type="required"
+          message="Vui lòng nhập tên"
+        ></dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="phone" dataType="number">
+        <dxo-label text="Số điện thoại"></dxo-label>
+        <dxi-validation-rule
+          type="required"
+          message="Vui lòng nhập số"
+        ></dxi-validation-rule>
+      </dxi-item>
+      <dxi-item dataField="address">
+        <dxo-label text="Địa chỉ"></dxo-label>
+        <dxi-validation-rule
+          type="required"
+          message="Vui lòng nhập địa chỉ"
+        ></dxi-validation-rule>
+      </dxi-item>
+    </dx-form>
+  </div>
+</div> -->

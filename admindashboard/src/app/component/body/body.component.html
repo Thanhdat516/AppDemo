@@ -1,0 +1,29 @@
+<div id="container">
+  <dx-drawer
+    id="sidebar-drawer"
+    template="template"
+    [minSize]="300"
+    revealMode="expand"
+  >
+    <div *dxTemplate="let data of 'template'">
+      <dx-list
+        class="item-list"
+        [items]="navigation"
+        selectionMode="single"
+        itemTemplate="links"
+      >
+        <div *dxTemplate="let link of 'links'">
+          <a class="list-item" [routerLink]="['/' + link.path]">
+            <div>
+              <span class="text-item">{{ link.text }}</span>
+            </div>
+          </a>
+        </div>
+      </dx-list>
+    </div>
+
+    <div id="view">
+      <router-outlet></router-outlet>
+    </div>
+  </dx-drawer>
+</div>

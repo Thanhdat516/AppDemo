@@ -1,0 +1,14 @@
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.deps.json
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.runtimeconfig.json
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.pdb
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.csproj.AssemblyReference.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.AssemblyInfoInputs.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.AssemblyInfo.cs
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.csproj.CoreCompileInputs.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\refint\Data_Access_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.pdb
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\Data_Access_Layer.genruntimeconfig.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\obj\Debug\net6.0\ref\Data_Access_Layer.dll

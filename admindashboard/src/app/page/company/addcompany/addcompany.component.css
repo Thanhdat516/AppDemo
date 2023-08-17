@@ -1,0 +1,38 @@
+#addcompany, #addemployee {
+    background-color: aliceblue;
+    height: 100vh;
+}
+
+.title {
+    font-size: 26px;
+}
+
+.container-addcompany
+{
+    padding: 20px;
+}
+
+.dx-field-value {
+    position: absolute;
+    left: 200px;
+    width: 40%;
+}
+
+.dx-field-label {
+    position: relative;
+    width: 20%;
+}
+
+::ng-deep .dx-placeholder
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    max-width: 100%;
+    width: auto;
+    height: 0;
+    text-align: center;
+    cursor: text;
+    pointer-events: none;
+}

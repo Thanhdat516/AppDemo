@@ -1,0 +1,20 @@
+#updatecompany, #updateemployee {
+    background-color: aliceblue;
+    height: 100vh;
+    padding: 20px;
+}
+
+.title {
+    font-size: 26px;
+}
+
+.dx-field-value {
+    position: absolute;
+    left: 200px;
+    width: 40%;
+}
+
+.dx-field-label {
+    position: relative;
+    width: 20%;
+}

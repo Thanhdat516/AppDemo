@@ -1,0 +1,78 @@
+<div id="container-body">
+  <h1>Thông tin nhân viên</h1>
+  <dx-button
+    text="Thêm"
+    class="add"
+    id="add"
+    (click)="addEmployee('addemployee')"
+  ></dx-button>
+  <dx-data-grid
+    id="gridContainer"
+    [dataSource]="employeeInfo"
+    [width]="'100%'"
+    [showBorders]="true"
+    [(autoNavigateToFocusedRow)]="autoNavigateToFocusedRow"
+    [allowColumnReordering]="true"
+    [allowColumnResizing]="true"
+    [repaintChangesOnly]="true"
+  >
+    <dxo-paging [pageSize]="10"></dxo-paging>
+    <dxo-editing
+      mode="popup"
+      [allowUpdating]="false"
+      [allowAdding]="false"
+      [allowDeleting]="false"
+    >
+      <dxo-popup
+        title="Thông tin công ty"
+        [showTitle]="true"
+        [width]="700"
+        [height]="525"
+      >
+      </dxo-popup>
+    </dxo-editing>
+
+    <dxi-column caption="ID" dataField="employeeID" [width]="30"></dxi-column>
+    <dxi-column
+      caption="Tên nhân viên"
+      dataField="nameEmployee"
+      [width]="300"
+    ></dxi-column>
+    <dxi-column
+      caption="Số điện thoại"
+      dataField="phoneEmployee"
+      [width]="200"
+    ></dxi-column>
+    <dxi-column
+      caption="Địa chỉ"
+      dataField="addressEmployee"
+      [width]="350"
+    ></dxi-column>
+    <dxi-column
+      caption="Tên công ty"
+      [width]="200"
+      alignment="left"
+      dataField="nameCompany"
+    >
+    </dxi-column>
+    <dxi-column
+      type="buttons"
+      caption="Chức năng"
+      [width]="100"
+      cellTemplate="optionbtn"
+    >
+      <div *dxTemplate="let data of 'optionbtn'">
+        <dx-button
+          id="update"
+          class="update"
+          (onClick)="updateEmployee('updateemployee', data)"
+        >
+          Sửa
+        </dx-button>
+        <dx-button id="delete" class="delete" (click)="deleteEmployee(data)"
+          >Xóa</dx-button
+        >
+      </div>
+    </dxi-column>
+  </dx-data-grid>
+</div>

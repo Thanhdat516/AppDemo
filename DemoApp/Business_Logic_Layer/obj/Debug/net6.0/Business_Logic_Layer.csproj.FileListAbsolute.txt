@@ -1,0 +1,15 @@
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\bin\Debug\net6.0\Business_Logic_Layer.deps.json
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\bin\Debug\net6.0\Business_Logic_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\bin\Debug\net6.0\Business_Logic_Layer.pdb
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\bin\Debug\net6.0\Data_Access_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\bin\Debug\net6.0\Data_Access_Layer.pdb
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.csproj.AssemblyReference.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.GeneratedMSBuildEditorConfig.editorconfig
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.AssemblyInfoInputs.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.AssemblyInfo.cs
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.csproj.CoreCompileInputs.cache
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.csproj.CopyComplete
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\refint\Business_Logic_Layer.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\Business_Logic_Layer.pdb
+D:\Desktop\App\dashboard-angular-app\DemoApp\Business_Logic_Layer\obj\Debug\net6.0\ref\Business_Logic_Layer.dll

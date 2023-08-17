@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Data_Access_Layer</id>
+    <version>1.0.0</version>
+    <authors>Data_Access_Layer</authors>
+    <description>Package Description</description>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="Microsoft.AspNetCore.Mvc.Core" version="2.1.38" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore" version="7.0.10" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.EntityFrameworkCore.SqlServer" version="7.0.10" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.Configuration.Json" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="7.0.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.runtimeconfig.json" target="lib\net6.0\Data_Access_Layer.runtimeconfig.json" />
+    <file src="D:\Desktop\App\dashboard-angular-app\DemoApp\Data_Access_Layer\bin\Debug\net6.0\Data_Access_Layer.dll" target="lib\net6.0\Data_Access_Layer.dll" />
+  </files>
+</package>

@@ -1,0 +1,73 @@
+<div id="updateemployee">
+  <h2 class="title">Cập nhật thông tin</h2>
+  <form action="your-action" (submit)="updateEmployee()">
+    <div class="dx-field">
+      <div class="dx-field-label">Tên nhân viên</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="nameEmployee" [showClearButton]="true">
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Vui lòng nhập vào trường này"
+            ></dxi-validation-rule>
+            <!-- <dxi-validation-rule
+                type="pattern"
+                [pattern]="stringPattern"
+              ></dxi-validation-rule> -->
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Số điện thoại</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="phoneEmployee" [showClearButton]="true">
+          <dx-validator>
+            <dxi-validation-rule
+              type="required"
+              message="Vui lòng nhập vào trường này"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Địa chỉ</div>
+      <div class="dx-field-value">
+        <dx-text-box [(value)]="addressEmployee" [showClearButton]="true">
+          <dx-validator>
+            <!-- <dxi-validation-rule
+                type="pattern"
+                [pattern]="stringPattern"
+              ></dxi-validation-rule> -->
+            <dxi-validation-rule
+              type="required"
+              message="Vui lòng nhập vào trường này"
+            ></dxi-validation-rule>
+          </dx-validator>
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-field">
+      <div class="dx-field-label">Tên công ty</div>
+      <div class="dx-field-value">
+        <dx-text-box
+          [(value)]="nameCompany"
+          [showClearButton]="true"
+          [disabled]="true"
+        >
+        </dx-text-box>
+      </div>
+    </div>
+    <div class="dx-fieldset">
+      <dx-button
+        width="77.6%"
+        id="button"
+        text="Cập nhật"
+        type="success"
+        [useSubmitBehavior]="true"
+      >
+      </dx-button>
+    </div>
+  </form>
+</div>
