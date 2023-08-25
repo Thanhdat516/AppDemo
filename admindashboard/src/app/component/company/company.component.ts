@@ -23,7 +23,6 @@ export class CompanyComponent {
     // this.appService.GetCompanies().subscribe((result: Company[]) => (this.companyInfo = result));
     this.appService.GetCompanies().subscribe((result: any) => {
       this.companyInfo = result;
-      console.log(this.companyInfo);
     });
   }
   

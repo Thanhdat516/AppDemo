@@ -2,7 +2,7 @@
 {
     public class CompanyModel
     {
-        private int companyid;
+        private int companyId;
 
         private string nameCompany;
 
@@ -11,7 +11,7 @@
         private string addressCompany;
 
         /*        private ICollection<EmployeeModel> employees;*/
-        public int CompanyID { get => companyid; set => companyid = value; }
+        public int CompanyID { get => companyId; set => companyId = value; }
 
         public string NameCompany { get => nameCompany; set => nameCompany = value; }
 

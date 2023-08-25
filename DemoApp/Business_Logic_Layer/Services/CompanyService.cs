@@ -2,11 +2,10 @@
 using Business_Logic_Layer.Models;
 using Data_Access_Layer.Entities;
 using Data_Access_Layer.Repository;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Business_Logic_Layer.Services
 {
-    public class CompanyService
+    public class CompanyService : ICompanyService
     {
         private readonly Mapper _CompanyMapper;
         private readonly ICompanyRepository _companyRepository;
@@ -18,9 +17,7 @@ namespace Business_Logic_Layer.Services
             _CompanyMapper = new Mapper(_configCompany);
         }
 
-
-
-        public async Task<ActionResult<List<CompanyModel>>> GetCompanies()
+        public async Task<List<CompanyModel>> GetCompanies()
         {
             List<Company> companyEntity = await _companyRepository.GetCompanies();
 
@@ -38,28 +35,28 @@ namespace Business_Logic_Layer.Services
                     return companyModel;
                 }*/
 
-        public async Task<ActionResult<List<Company>>> CreateCompany(CompanyModel company)
+        public async Task<List<Company>> CreateCompany(CompanyModel company)
         {
             Company companyEntity = _CompanyMapper.Map<Company>(company);
 
             return await _companyRepository.CreateCompany(companyEntity);
         }
 
-        public async Task<ActionResult<List<Company>>> UpdateCompany(CompanyModel company)
+        public async Task<List<Company>> UpdateCompany(CompanyModel company)
         {
             Company companyEntity = _CompanyMapper.Map<Company>(company);
 
             return await _companyRepository.UpdateCompany(companyEntity);
         }
 
-        public async Task<ActionResult<List<Company>>> DeleteCompany(int id)
+        public async Task<List<Company>> DeleteCompany(int id)
         {
             return await _companyRepository.DeleteCompany(id);
         }
 
-        public async Task<ActionResult<String>> GetNameCompany(int id)
-        {
-            return await _companyRepository.GetNameCompany(id);
-        }
+        /*        public async Task<ActionResult<String>> GetNameCompany(int id)
+                {
+                    return await _companyRepository.GetNameCompany(id);
+                }*/
     }
 }

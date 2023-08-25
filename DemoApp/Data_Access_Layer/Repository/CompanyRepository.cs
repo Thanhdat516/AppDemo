@@ -48,10 +48,10 @@ namespace Data_Access_Layer.Repository
             return await _context.Companies.ToListAsync();
         }
 
-        public async Task<String> GetNameCompany(int companyID)
-        {
-            var dbCompany = await _context.Companies.FindAsync(companyID);
-            return dbCompany.NameCompany;
-        }
+        /*        public async Task<String> GetNameCompany(int companyID)
+                {
+                    var dbCompany = await _context.Companies.FindAsync(companyID);
+                    return dbCompany.NameCompany;
+                }*/
     }
 }

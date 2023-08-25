@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +17,10 @@ import { UpdatecompanyComponent } from './page/company/update-company/updatecomp
 import { AddcompanyComponent } from './page/company/addcompany/addcompany.component';
 import { AddemployeeComponent } from './page/employee/addemployee/addemployee/addemployee.component';
 import { UpdateemployeeComponent } from './page/employee/updateemployee/updateemployee.component';
+import { LoginComponent } from './component/login/login.component';
+import { AccessdeniedComponent } from './page/access-denied/accessdenied/accessdenied.component';
+
+import { TokenInterceptor } from './component/interceptor/token.interceptor';
 
 
 @NgModule({
@@ -30,6 +34,8 @@ import { UpdateemployeeComponent } from './page/employee/updateemployee/updateem
     AddcompanyComponent,
     AddemployeeComponent,
     UpdateemployeeComponent,
+    LoginComponent,
+    AccessdeniedComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +51,11 @@ import { UpdateemployeeComponent } from './page/employee/updateemployee/updateem
     DxValidatorModule,
     DxSelectBoxModule,
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -71,6 +71,30 @@ namespace Data_Access_Layer.Migrations
                     b.ToTable("Employees");
                 });
 
+            modelBuilder.Entity("Data_Access_Layer.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserName")
+                        .IsUnique();
+
+                    b.ToTable("Users");
+                });
+
             modelBuilder.Entity("Data_Access_Layer.Entities.Employee", b =>
                 {
                     b.HasOne("Data_Access_Layer.Entities.Company", "Company")

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "LOPsoEUto38HCzWzdzrUdRM8eGWp03lukW6WE8CbHwC4AQz6QA/vCGSmIcZp0TV6vEOtA3FZT0OcoRTj1u7ceA==",
+  "dgSpecHash": "uhiIIu3rx7A1CTtACv2tCajrguJNRbxBl7tJtO2asvQNHNYMYQte6qFQYUUAkszbPC3h5+LoD/ohqzk2lsKPsw==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\App\\dashboard-angular-app\\DemoApp\\DemoApp\\DemoApp.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.1\\microsoft.aspnetcore.authentication.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.21\\microsoft.aspnetcore.authentication.jwtbearer.6.0.21.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.1.1\\microsoft.aspnetcore.authorization.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.1.1\\microsoft.aspnetcore.authorization.policy.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.hosting.abstractions\\2.1.1\\microsoft.aspnetcore.hosting.abstractions.2.1.1.nupkg.sha512",

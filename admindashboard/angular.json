@@ -13,6 +13,13 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "jszip",
+              "evexpress-diagram",
+              "devexpress-gantt",
+              "devextreme-quill",
+              "devexpress-diagram"
+            ],
             "outputPath": "dist/admindashboard",
             "index": "src/index.html",
             "main": "src/main.ts",

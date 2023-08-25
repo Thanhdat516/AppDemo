@@ -8,6 +8,7 @@ import { Employee } from '../models/employee';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AppService {
   private urlCompany = "Company";
   private urlEmployee = "Employee";
@@ -39,10 +40,6 @@ export class AppService {
   public GetCompanies(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/${this.urlCompany}`);
   }
-
-  // public getNameCompany(employee: Employee): Observable<Employee[]> { 
-  //   return this.http.get<Employee[]>(`${environment.apiUrl}/${this.urlEmployee}/${employee.employeeid}`); 
-  // }
 
   public createCompany(company: Company): Observable<Company[]> {
     return this.http.post<Company[]>(`${environment.apiUrl}/${this.urlCompany}`, company);

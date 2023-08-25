@@ -104,3 +104,4 @@ D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\Humanizer.
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\Mono.TextTemplating.dll
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\System.CodeDom.dll
+D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

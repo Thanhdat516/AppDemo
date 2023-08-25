@@ -1,32 +1,32 @@
 ﻿using Business_Logic_Layer.Models;
 using Business_Logic_Layer.Services;
-using Data_Access_Layer.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApp.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CompanyController : ControllerBase
     {
-        private readonly ICompanyRepository _companyRepository;
-        private readonly CompanyService _BLL;
+        private readonly ICompanyService _bllCompany;
 
-        public CompanyController(ICompanyRepository companyRepository)
+        public CompanyController(ICompanyService companyService)
         {
-            _companyRepository = companyRepository;
-            _BLL = new Business_Logic_Layer.Services.CompanyService(_companyRepository);
+            _bllCompany = companyService ?? throw new ArgumentNullException(nameof(companyService));
+            /*_BLL = new Business_Logic_Layer.Services.ICompanyService;*/
         }
 
         [HttpGet]
         public async Task<ActionResult<List<CompanyModel>>> GetCompanies()
         {
-            var companies = await _BLL.GetCompanies();
-            if (companies is null)
+            var companies = await _bllCompany.GetCompanies();
+            if (companies == null)
             {
                 return NotFound();
             }
-            return Ok(companies.Value);
+            return Ok(companies);
         }
 
         /*        [HttpGet]
@@ -45,49 +45,49 @@ namespace DemoApp.Controllers
         [HttpPost]
         public async Task<ActionResult<List<CompanyModel>>> CreateCompany(CompanyModel company)
         {
-            var companies = await _BLL.CreateCompany(company);
+            var companies = await _bllCompany.CreateCompany(company);
             if (companies is null)
             {
                 return NotFound();
             }
 
-            return Ok(companies.Value);
+            return Ok(companies);
         }
 
         [HttpPut]
         public async Task<ActionResult<List<CompanyModel>>> UpdateCompany(CompanyModel company)
         {
-            var companies = await _BLL.UpdateCompany(company);
+            var companies = await _bllCompany.UpdateCompany(company);
             if (companies is null)
             {
                 return NotFound();
             }
 
-            return Ok(companies.Value);
+            return Ok(companies);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<CompanyModel>>> DeleteCompany(int id)
         {
-            var companies = await _BLL.DeleteCompany(id);
+            var companies = await _bllCompany.DeleteCompany(id);
             if (companies is null)
             {
                 return NotFound();
             }
 
-            return Ok(companies.Value);
+            return Ok(companies);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<String>> GetNameCompany(int id)
-        {
-            var namecompany = await _BLL.GetNameCompany(id);
-            if (namecompany is null)
-            {
-                return NotFound();
-            }
+        /*        [HttpGet("{id}")]
+                public async Task<ActionResult<String>> GetNameCompany(int id)
+                {
+                    var namecompany = await _BLL.GetNameCompany(id);
+                    if (namecompany is null)
+                    {
+                        return NotFound();
+                    }
 
-            return Ok(namecompany.Value);
-        }
+                    return Ok(namecompany.Value);
+                }*/
     }
 }

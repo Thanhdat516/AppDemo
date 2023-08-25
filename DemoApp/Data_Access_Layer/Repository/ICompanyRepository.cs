@@ -8,6 +8,6 @@ namespace Data_Access_Layer.Repository
         public Task<List<Company>> CreateCompany(Company company);
         public Task<List<Company>> UpdateCompany(Company company);
         public Task<List<Company>> DeleteCompany(int companyID);
-        public Task<String> GetNameCompany(int companyID);
+        /*        public Task<String> GetNameCompany(int companyID);*/
     }
 }

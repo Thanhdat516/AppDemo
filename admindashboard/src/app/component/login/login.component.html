@@ -1,0 +1,131 @@
+<div class="container-form">
+  <form action="your-action" (submit)="handleSubmit()" class="form-login">
+    <dx-form [formData]="dataFormLogon" width="400">
+      <dxi-item itemType="group" cssClass="testClass" caption="Đăng nhập">
+        <div class="dx-field">
+          <div class="dx-field-label" alignment="left">Username</div>
+          <div class="dx-field-value">
+            <dx-text-box
+              [(value)]="Username"
+              [showClearButton]="true"
+              label="Username"
+              labelMode="floating"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="Vui lòng nhập vào trường này"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field">
+          <div class="dx-field-label" alignment="left">Password</div>
+          <div class="dx-field-value">
+            <dx-text-box
+              [(value)]="Password"
+              [showClearButton]="true"
+              label="Password"
+              labelMode="floating"
+              mode="password"
+            >
+              <dx-validator>
+                <dxi-validation-rule
+                  type="required"
+                  message="Vui lòng nhập vào trường này"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+        <div class="dx-fieldset">
+          <dx-button
+            width="77.6%"
+            id="button"
+            text="Log in"
+            type="success"
+            [useSubmitBehavior]="true"
+          >
+          </dx-button>
+        </div>
+        <!-- <dxi-item dataField="Username" [isRequired]="true"></dxi-item>
+          <dxi-item dataField="Password" [isRequired]="true"></dxi-item>
+          <dxi-item
+            itemType="button"
+            [buttonOptions]="submitButtonOptions"
+          ></dxi-item> -->
+      </dxi-item>
+  
+      <!-- <dxi-tab title="Sign in">
+          <form (submit)="handleSignIn($event)" class="form-login">
+            <dx-form [formData]="dataFormLogon" width="400">
+              <div class="dx-field">
+                <div class="dx-field-label" alignment="left">Username</div>
+                <div class="dx-field-value">
+                  <dx-text-box
+                  [(value)]="Username"
+                  [showClearButton]="true"
+                label="Username"
+                labelMode="floating"
+                >
+                <dx-validator>
+                  <dxi-validation-rule
+                  type="required"
+                  message="Vui lòng nhập vào trường này"
+                  ></dxi-validation-rule>
+                </dx-validator>
+              </dx-text-box>
+            </div>
+          </div>
+          <div class="dx-field">
+            <div class="dx-field-label" alignment="left">Password</div>
+            <div class="dx-field-value">
+              <dx-text-box
+              [(value)]="Password"
+              [showClearButton]="true"
+              label="Password"
+              labelMode="floating"
+              >
+              <dx-validator>
+                <dxi-validation-rule
+                type="required"
+                message="Vui lòng nhập vào trường này"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+        <div class="dx-field">
+            <div class="dx-field-label" alignment="left">Confirm Password</div>
+            <div class="dx-field-value">
+              <dx-text-box
+              [showClearButton]="true"
+              label="Confirm Password"
+              labelMode="floating"
+              >
+              <dx-validator>
+                <dxi-validation-rule
+                type="required"
+                message="Vui lòng nhập vào trường này"
+                ></dxi-validation-rule>
+              </dx-validator>
+            </dx-text-box>
+          </div>
+        </div>
+        <div class="dx-fieldset">
+          <dx-button
+          width="77.6%"
+          id="button"
+          text="Sign in"
+          type="success"
+          [useSubmitBehavior]="true"
+          >
+        </dx-button>
+      </div>
+    </dx-form>
+    </form>
+    </dxi-tab> -->
+    </dx-form>
+  </form>
+</div>
