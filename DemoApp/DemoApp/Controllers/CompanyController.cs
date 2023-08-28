@@ -43,7 +43,7 @@ namespace DemoApp.Controllers
                 }*/
 
         [HttpPost]
-        public async Task<ActionResult<List<CompanyModel>>> CreateCompany(CompanyModel company)
+        public async Task<IActionResult> CreateCompany(CompanyModel company)
         {
             var companies = await _bllCompany.CreateCompany(company);
             if (companies is null)
@@ -55,7 +55,7 @@ namespace DemoApp.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<CompanyModel>>> UpdateCompany(CompanyModel company)
+        public async Task<IActionResult> UpdateCompany(CompanyModel company)
         {
             var companies = await _bllCompany.UpdateCompany(company);
             if (companies is null)
@@ -66,8 +66,9 @@ namespace DemoApp.Controllers
             return Ok(companies);
         }
 
+
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<CompanyModel>>> DeleteCompany(int id)
+        public async Task<IActionResult> DeleteCompany(int id)
         {
             var companies = await _bllCompany.DeleteCompany(id);
             if (companies is null)

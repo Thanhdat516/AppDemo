@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "uhiIIu3rx7A1CTtACv2tCajrguJNRbxBl7tJtO2asvQNHNYMYQte6qFQYUUAkszbPC3h5+LoD/ohqzk2lsKPsw==",
+  "dgSpecHash": "Fnm1KDVExI8mW2QrNR5oQ8y7lPtD7ai2eDsvwnzgB99Mzhhjbnhylj0ijj7S0RFFIlwDDZeGQJr0mfXANZ9BdA==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\App\\dashboard-angular-app\\DemoApp\\DemoApp\\DemoApp.csproj",
   "expectedPackageFiles": [
@@ -72,6 +72,10 @@
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog\\5.2.3\\nlog.5.2.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.database\\5.2.3\\nlog.database.5.2.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.extensions.logging\\5.3.3\\nlog.extensions.logging.5.3.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.3\\nlog.web.aspnetcore.5.3.3.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\swashbuckle.aspnetcore\\6.5.0\\swashbuckle.aspnetcore.6.5.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.5.0\\swashbuckle.aspnetcore.swagger.6.5.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.5.0\\swashbuckle.aspnetcore.swaggergen.6.5.0.nupkg.sha512",

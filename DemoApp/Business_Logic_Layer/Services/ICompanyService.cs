@@ -1,13 +1,13 @@
 ﻿using Business_Logic_Layer.Models;
-using Data_Access_Layer.Entities;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Business_Logic_Layer.Services
 {
     public interface ICompanyService
     {
         public Task<List<CompanyModel>> GetCompanies();
-        public Task<List<Company>> CreateCompany(CompanyModel company);
-        public Task<List<Company>> UpdateCompany(CompanyModel company);
-        public Task<List<Company>> DeleteCompany(int companyID);
+        public Task<IActionResult> CreateCompany(CompanyModel company);
+        public Task<IActionResult> UpdateCompany(CompanyModel company);
+        public Task<IActionResult> DeleteCompany(int companyID);
     }
 }

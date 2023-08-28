@@ -1,12 +1,13 @@
 ﻿using Data_Access_Layer.Data;
 using Data_Access_Layer.Entities;
-using Microsoft.EntityFrameworkCore;
 
 namespace Data_Access_Layer.Repository
 {
-    public class CompanyRepository : ICompanyRepository
+    public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
-        private readonly DataContext _context;
+        public CompanyRepository(DataContext context) : base(context) { }
+
+        /*private readonly DataContext _context;
 
         public CompanyRepository(DataContext context)
         {
@@ -47,6 +48,26 @@ namespace Data_Access_Layer.Repository
 
             return await _context.Companies.ToListAsync();
         }
+
+        public Task<IEnumerable<Company>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Add(Company entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Update(Company entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task Delete(int id)
+        {
+            throw new NotImplementedException();
+        }*/
 
         /*        public async Task<String> GetNameCompany(int companyID)
                 {

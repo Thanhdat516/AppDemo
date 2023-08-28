@@ -2,7 +2,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { Employee } from 'src/app/models/employee';
 import { Company } from 'src/app/models/company';
-import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-addemployee',
@@ -26,7 +25,6 @@ export class AddemployeeComponent {
   constructor(private AppService: AppService) {
     this.AppService.GetCompanies().subscribe((result: Company[]) =>
     {
-      console.log(result);
       this.listCompany = result;
     });
   }

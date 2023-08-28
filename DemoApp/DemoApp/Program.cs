@@ -5,6 +5,7 @@ using Data_Access_Layer.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using NLog.Web;
 using System.Text;
 using System.Text.Json.Serialization;
 
@@ -25,6 +26,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ICompanyService, CompanyService>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 
 
@@ -44,6 +46,9 @@ builder.Services.AddCors(option => option.AddPolicy(name: "EmployeeOrigins",
     {
         policy.WithOrigins("http://localhost:4200").AllowAnyMethod().AllowAnyHeader();
     }));
+
+builder.Logging.ClearProviders();
+builder.Host.UseNLog();
 
 builder.Services.Configure<AppSettingModel>(builder.Configuration.GetSection("AppSettings"));
 

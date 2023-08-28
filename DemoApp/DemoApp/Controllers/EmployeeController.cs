@@ -29,7 +29,7 @@ namespace DemoApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<EmployeeModel>>> CreateEmployee(EmployeeModel employee)
+        public async Task<IActionResult> CreateEmployee(EmployeeModel employee)
         {
             var employees = await _bllEmployee.CreateEmployee(employee);
             if (employees is null)
@@ -41,7 +41,7 @@ namespace DemoApp.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<List<EmployeeModel>>> UpdateEmployee(EmployeeModel employee)
+        public async Task<IActionResult> UpdateEmployee(EmployeeModel employee)
         {
             var employees = await _bllEmployee.UpdateEmployee(employee);
             if (employees is null)
@@ -53,7 +53,7 @@ namespace DemoApp.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<EmployeeModel>>> DeleteEmployee(int id)
+        public async Task<IActionResult> DeleteEmployee(int id)
         {
             var employees = await _bllEmployee.DeleteEmployee(id);
             if (employees is null)

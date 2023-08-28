@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fqVKxqxeHwviyr94n17YPuHtjzWvtfCL4+i/Vc1UXqTANEHiDc/BifA05EZwr+bv6IiFbUuP9C+Pq+4W9ZvYaA==",
+  "dgSpecHash": "gbO1St5wwbYzg/R8EW+xr3OIz3xRLMekLGqvGFLMntk3hx5wXaBUOym311j9LLYgKz2RBj+xxVdblyR/wGAH2A==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\App\\dashboard-angular-app\\DemoApp\\Data_Access_Layer\\Data_Access_Layer.csproj",
   "expectedPackageFiles": [
@@ -67,6 +67,10 @@
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog\\5.2.3\\nlog.5.2.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.database\\5.2.3\\nlog.database.5.2.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.extensions.logging\\5.3.3\\nlog.extensions.logging.5.3.3.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\nlog.web.aspnetcore\\5.3.3\\nlog.web.aspnetcore.5.3.3.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",
