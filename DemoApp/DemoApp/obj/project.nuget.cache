@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Fnm1KDVExI8mW2QrNR5oQ8y7lPtD7ai2eDsvwnzgB99Mzhhjbnhylj0ijj7S0RFFIlwDDZeGQJr0mfXANZ9BdA==",
+  "dgSpecHash": "7Q0yV3GfKTkbegnLWM7FWtG8k4dBnpBaUKemGh7Kwr0y+5Q8CauZ2++2aRJUb+MN+2XJasVgYdvJkeI+zddeqg==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\App\\dashboard-angular-app\\DemoApp\\DemoApp\\DemoApp.csproj",
   "expectedPackageFiles": [
@@ -9,6 +9,7 @@
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\fluentassertions\\6.11.0\\fluentassertions.6.11.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\identitymodel\\6.1.0\\identitymodel.6.1.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.1\\microsoft.aspnetcore.authentication.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.21\\microsoft.aspnetcore.authentication.jwtbearer.6.0.21.nupkg.sha512",

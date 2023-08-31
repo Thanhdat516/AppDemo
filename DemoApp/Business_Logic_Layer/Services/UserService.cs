@@ -2,11 +2,8 @@
 using Business_Logic_Layer.Models;
 using Data_Access_Layer.Entities;
 using Data_Access_Layer.Repository;
+using IdentityModel.Client;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace Business_Logic_Layer.Services
 {
@@ -15,13 +12,15 @@ namespace Business_Logic_Layer.Services
         private readonly Mapper _UserMapper;
         private readonly AppSettingModel _appSetting;
         private readonly IUserRepository _userRepository;
+        private readonly HttpClient _httpClient;
 
-        public UserService(IUserRepository userRepository, IOptionsMonitor<AppSettingModel> optionsMonitor)
+        public UserService(IUserRepository userRepository, IOptionsMonitor<AppSettingModel> optionsMonitor, HttpClient httpClient)
         {
             _userRepository = userRepository;
             var _configCompany = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>().ReverseMap());
             _UserMapper = new Mapper(_configCompany);
             _appSetting = optionsMonitor.CurrentValue;
+            _httpClient = httpClient;
         }
 
         public async Task<ApiResponseModel> ValidateLogin(UserModel model)
@@ -45,11 +44,12 @@ namespace Business_Logic_Layer.Services
             {
                 Success = true,
                 Message = "Authenticate success",
-                Data = GenerateToken(checkUser)
+                Data = GenerateToken().Result
             };
         }
 
-        public string GenerateToken(UserModel user)
+        #region Old Generate token
+        /*public string GenerateToken(UserModel user)
         {
             var claims = new List<Claim>
             {
@@ -74,6 +74,35 @@ namespace Business_Logic_Layer.Services
             var token = tokenHandler.CreateJwtSecurityToken(tokenDescription);
 
             return tokenHandler.WriteToken(token);
+        }*/
+        #endregion
+
+        #region New Generate token
+        public async Task<string> GenerateToken()
+        {
+            var discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync("http://localhost:8080/realms/myapp/");
+
+            if (discoveryDocument.IsError)
+            {
+                throw new Exception("Discovery document error: " + discoveryDocument.Error);
+            }
+
+            var tokenResponse = await _httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
+            {
+                Address = discoveryDocument.TokenEndpoint,
+                ClientId = "MyClient",
+                ClientSecret = "2mYkbk2k9Tv3eA7RC2jFGBsXUGs3rBdT",
+                UserName = "demoapp",
+                Password = "admin123"
+            });
+
+            if (tokenResponse.IsError)
+            {
+                throw new Exception("Token request error: " + tokenResponse.Error);
+            }
+
+            return tokenResponse.AccessToken;
         }
+        #endregion
     }
 }

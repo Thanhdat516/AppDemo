@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "ETd9J/Gcx7kLsENFsMLdNEdSuNQs2uNTgt4pqW+mRnzLxzzREfryseMi7cpGu+vLydyzkAVXhgT5EbmD3lWgZg==",
+  "dgSpecHash": "noAXA1myYNzJLICgLRheJaGpNLYdUdUu7TsqksFr9ZhZWrEXuTO3SsoSibVKemMnWdUFrznpjszwJxUcLQwhwQ==",
   "success": true,
   "projectFilePath": "D:\\Desktop\\App\\dashboard-angular-app\\DemoApp\\Business_Logic_Layer\\Business_Logic_Layer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\Thanh Dat\\.nuget\\packages\\identitymodel\\6.1.0\\identitymodel.6.1.0.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.1.1\\microsoft.aspnetcore.authentication.abstractions.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.1.1\\microsoft.aspnetcore.authentication.core.2.1.1.nupkg.sha512",
     "C:\\Users\\Thanh Dat\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.1.1\\microsoft.aspnetcore.authorization.2.1.1.nupkg.sha512",
