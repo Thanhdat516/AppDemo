@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Response } from 'src/app/models/response';
 import { AuthService } from 'src/app/services/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
-
+import { AlertifyService } from '../../../alertify.service'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -22,12 +22,12 @@ export class LoginComponent implements OnInit {
     decodedToken: any;
     jwtHelperService = new JwtHelperService();
     ngOnInit(): void {
-        if(this.authService.issLoggedIn() == true) {
+        if(this.authService.isLoggedIn() == true) {
             this.router.navigate(["company"]);
         }
     }
 
-    constructor(private router: Router, private authService: AuthService) {
+    constructor(private router: Router, private authService: AuthService, private alertify: AlertifyService) {
         
     }
 
@@ -42,16 +42,16 @@ export class LoginComponent implements OnInit {
         }
         this.authService.AuthenticationUser(this.valueUser).subscribe((result: Response) =>
         {
-            if(result.success && result.data) {
+            if(result.success && result.data.accessToken) {
                 this.date = Math.floor((new Date().getTime() / 1000));
-                alert(result.message);
+                this.alertify.success("Login successful");
                 this.router.navigate(["company"]);
-                this.authService.storeToken(result.data);
-                this.decodedToken = this.jwtHelperService.decodeToken(result.data);
+                this.authService.storeToken(result.data.accessToken);
+                this.decodedToken = this.jwtHelperService.decodeToken(result.data.accessToken);
                 this.authService.autoLogout((this.decodedToken.exp - this.date)*1000);
             }
             else {
-                alert(result.message);
+                this.alertify.error("Invalid user/password");
             }
         });
     }

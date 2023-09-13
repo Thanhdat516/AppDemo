@@ -10,6 +10,7 @@ import { LoginComponent } from './component/login/login.component';
 import { BodyComponent } from './component/body/body.component';
 import { AccessdeniedComponent } from './page/access-denied/accessdenied/accessdenied.component';
 import { authGuard } from './guards/auth.guard';
+import { KeycloakAuthGuard } from 'keycloak-angular'
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },

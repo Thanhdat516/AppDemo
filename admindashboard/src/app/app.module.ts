@@ -20,8 +20,9 @@ import { UpdateemployeeComponent } from './page/employee/updateemployee/updateem
 import { LoginComponent } from './component/login/login.component';
 import { AccessdeniedComponent } from './page/access-denied/accessdenied/accessdenied.component';
 
-import { TokenInterceptor } from './component/interceptor/token.interceptor';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
+import { TokenInterceptor } from './component/interceptor/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,11 +52,18 @@ import { TokenInterceptor } from './component/interceptor/token.interceptor';
     DxValidatorModule,
     DxSelectBoxModule,
   ],
-  providers: [{
+  providers: [
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi: true
-  }],
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+  }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

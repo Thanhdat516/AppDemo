@@ -6,6 +6,6 @@ namespace Business_Logic_Layer.Services
     {
         public Task<ApiResponseModel> ValidateLogin(UserModel model);
 
-        public Task<string> GenerateToken();
+        public string GenerateToken(UserModel model);
     }
 }

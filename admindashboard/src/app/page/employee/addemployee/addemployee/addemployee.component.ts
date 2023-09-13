@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { Employee } from 'src/app/models/employee';
 import { Company } from 'src/app/models/company';
+import { AlertifyService } from 'src/alertify.service';
 
 @Component({
   selector: 'app-addemployee',
@@ -22,7 +23,7 @@ export class AddemployeeComponent {
   @Input() valueEmployee? : Employee;
   @Output() employeeUpdated = new EventEmitter<Employee[]>();
   
-  constructor(private AppService: AppService) {
+  constructor(private AppService: AppService, private alertify: AlertifyService) {
     this.AppService.GetCompanies().subscribe((result: Company[]) =>
     {
       this.listCompany = result;
@@ -44,6 +45,6 @@ export class AddemployeeComponent {
     }
     this.AppService.createEmployee(this.valueEmployee).subscribe((employees: Employee[]) => this.employeeUpdated.emit(employees));
     window.location.reload()
-    alert("Thêm thành công");
+    this.alertify.success("Created successful");
   }
 }

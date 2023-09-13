@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from 'src/environments/environment';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 import { Company } from '../models/company';
 import { Employee } from '../models/employee';
 
@@ -68,5 +70,18 @@ export class AppService {
 
   public deleteEmployee(employee: Employee): Observable<Employee[]> {
     return this.http.delete<Employee[]>(`${environment.apiUrl}/${this.urlEmployee}/${employee.employeeID}`);
+  }
+
+  private handleError(error: HttpErrorResponse) {
+  let errorMessage = 'An error occurred';
+    
+    if (error.error instanceof ErrorEvent) {
+      // Client-side error
+      errorMessage = `Client Error: ${error.error.message}`;
+    } else {
+      // Server-side error
+      errorMessage = `Server Error: ${error.status} - ${error.statusText || 'Unknown'}`;
+    }
+    return throwError(() =>errorMessage);
   }
 }

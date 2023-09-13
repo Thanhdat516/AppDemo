@@ -91,19 +91,6 @@
           }
         }
       },
-      "IdentityModel/6.1.0": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0/IdentityModel.dll": {
-            "related": ".pdb;.xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0/IdentityModel.dll": {
-            "related": ".pdb;.xml"
-          }
-        }
-      },
       "Microsoft.AspNetCore.Authentication.Abstractions/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -1842,7 +1829,6 @@
         "dependencies": {
           "AutoMapper": "12.0.1",
           "Data_Access_Layer": "1.0.0",
-          "IdentityModel": "6.1.0",
           "Microsoft.Extensions.DependencyInjection": "7.0.0"
         },
         "compile": {
@@ -1974,30 +1960,6 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
-      ]
-    },
-    "IdentityModel/6.1.0": {
-      "sha512": "W9A6U26se5Jeo+QoczLfXW5LgBDXL0bBfnb2DWWZMivv9L52ls/85WtEGZQ8kSgOUecuBUlQZdpu02Uni8n1tg==",
-      "type": "package",
-      "path": "identitymodel/6.1.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "icon.jpg",
-        "identitymodel.6.1.0.nupkg.sha512",
-        "identitymodel.nuspec",
-        "lib/net461/IdentityModel.dll",
-        "lib/net461/IdentityModel.pdb",
-        "lib/net461/IdentityModel.xml",
-        "lib/net472/IdentityModel.dll",
-        "lib/net472/IdentityModel.pdb",
-        "lib/net472/IdentityModel.xml",
-        "lib/net6.0/IdentityModel.dll",
-        "lib/net6.0/IdentityModel.pdb",
-        "lib/net6.0/IdentityModel.xml",
-        "lib/netstandard2.0/IdentityModel.dll",
-        "lib/netstandard2.0/IdentityModel.pdb",
-        "lib/netstandard2.0/IdentityModel.xml"
       ]
     },
     "Microsoft.AspNetCore.Authentication.Abstractions/2.1.1": {

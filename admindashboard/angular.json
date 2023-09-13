@@ -18,7 +18,10 @@
               "evexpress-diagram",
               "devexpress-gantt",
               "devextreme-quill",
-              "devexpress-diagram"
+              "devexpress-diagram",
+              "base64-js",
+              "js-sha256",
+              "alertifyjs"
             ],
             "outputPath": "dist/admindashboard",
             "index": "src/index.html",
@@ -36,7 +39,7 @@
               "node_modules/devextreme/dist/css/dx.light.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["node_modules/alertifyjs/build/alertify.min.js"]
           },
           "configurations": {
             "production": {
@@ -78,6 +81,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "ssl": true,
+            "sslKey": "./ssl/server.key",
+            "sslCert": "./ssl/server.crt"
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {

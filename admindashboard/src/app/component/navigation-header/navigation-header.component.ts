@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { AlertifyService } from '../../../alertify.service'
 
 @Component({
   selector: 'app-navigation-header',
@@ -7,9 +8,11 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./navigation-header.component.css']
 })
 export class NavigationHeaderComponent {
-  constructor(private authService: AuthService) {}
+  message: string = '';
+  constructor(private authService: AuthService, private alertify: AlertifyService) {}
 
   handleLogOut() {
-    this.authService.logOut();
+    this.authService.LogoutByRefreshToken().subscribe();
+    this.alertify.success("Logout successful")
   }
 }

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 // import { AppService } from 'src/app/services/app.service';
 import { Company } from 'src/app/models/company';
 import { AppService } from 'src/app/services/app.service';
-
+import { AlertifyService } from 'src/alertify.service';
 import { Router } from '@angular/router';
 
 
@@ -26,7 +26,7 @@ maskRules = {
   H: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
 }
 
-constructor(private appService: AppService, private router: Router) {}
+constructor(private appService: AppService, private router: Router, private alertify: AlertifyService) {}
 
   ngOnInit(): void {
     this.dataOld = this.appService.getdataCompany();
@@ -45,6 +45,6 @@ constructor(private appService: AppService, private router: Router) {}
 
     this.appService.updateCompany(this.dataNew).subscribe((company: Company[]) => this.companyUpdated.emit(company));
     this.router.navigate(["company"]);
-    alert("Cập nhật thành công");
+    this.alertify.success("Updated successful");
   }
 }

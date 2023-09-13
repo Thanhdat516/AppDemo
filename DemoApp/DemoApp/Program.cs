@@ -20,8 +20,6 @@ builder.Services.AddControllers().AddJsonOptions(opts =>
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddHttpClient();
-
 builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -59,8 +57,7 @@ var SecretKeyBytes = Encoding.UTF8.GetBytes(SecretKey);
 var Issuer = builder.Configuration["AppSettings:Issuer"];
 var Audience = builder.Configuration["AppSettings:Audience"];
 
-//Authentication don't use keycloak
-/*builder.Services.AddAuthentication(opts =>
+builder.Services.AddAuthentication(opts =>
 {
     opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
     opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -82,35 +79,6 @@ var Audience = builder.Configuration["AppSettings:Audience"];
 
         ClockSkew = TimeSpan.Zero
     };
-});*/
-
-//Authentication use keycloak
-builder.Services.AddAuthentication(opts =>
-{
-    opts.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    opts.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
-}).AddJwtBearer(options =>
-{
-    string keycloakServerUrl = builder.Configuration["Keycloak:auth-server-url"] + $"realms/{builder.Configuration["Keycloak:realm"]}/";
-    string clientId = builder.Configuration["Keycloak:resource"];
-    options.Authority = keycloakServerUrl;
-    options.Audience = clientId;
-
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidIssuer = keycloakServerUrl,
-        ValidAudiences = new List<string> { "master-realm", "account", clientId },
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-
-        ClockSkew = TimeSpan.Zero
-    };
-    options.RequireHttpsMetadata = false;
-    options.SaveToken = true;
-    options.Validate();
 });
 
 builder.Services.AddAuthorization();

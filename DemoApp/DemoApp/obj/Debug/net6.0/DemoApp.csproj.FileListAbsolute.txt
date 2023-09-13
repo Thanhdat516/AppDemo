@@ -110,4 +110,3 @@ D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\NLog.dll
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\NLog.Database.dll
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\NLog.Extensions.Logging.dll
 D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\NLog.Web.AspNetCore.dll
-D:\Desktop\App\dashboard-angular-app\DemoApp\DemoApp\bin\Debug\net6.0\IdentityModel.dll

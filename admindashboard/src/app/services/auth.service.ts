@@ -3,13 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
+
 export class AuthService implements OnInit {
   private urlUser = "User";
+  private Logout = "logout";
+  private urlCheckToken = "validate-refresh-token";
   date: number = 0;
   
   ngOnInit(): void {
@@ -20,7 +24,16 @@ export class AuthService implements OnInit {
   
   // Lấy api authentication user
   public AuthenticationUser(user: User) {
-    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}`, user);
+    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}`, user); //
+  }
+
+  public ValidateRefreshToken(): Observable<any> {
+    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}/${this.urlCheckToken}`, {});
+  }
+
+   public LogoutByRefreshToken(): Observable<any> {
+    this.logOut();
+    return this.http.get<any>(`${environment.apiUrl}/${this.urlUser}/${this.Logout}`);
   }
   
   public storeToken(tokenValue: string) {
@@ -31,7 +44,7 @@ export class AuthService implements OnInit {
     return localStorage.getItem('token');
   }
 
-  public issLoggedIn() {
+  public isLoggedIn() {
     return !!localStorage.getItem('token');
   }
 

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
 import { Company } from 'src/app/models/company';
+import { AlertifyService } from 'src/alertify.service';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class AddcompanyComponent implements OnInit {
     H: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/
   }
   
-  constructor(private AppService: AppService) {
+  constructor(private AppService: AppService, private alertify: AlertifyService) {
   }
   
   ngOnInit(): void {
@@ -34,6 +35,6 @@ export class AddcompanyComponent implements OnInit {
     }
     this.AppService.createCompany(this.valueCompany).subscribe((companies: Company[]) => this.companyUpdated.emit(companies));
     window.location.reload()
-    alert("Thêm thành công");
+    this.alertify.success("Created successful");
   }
 }
