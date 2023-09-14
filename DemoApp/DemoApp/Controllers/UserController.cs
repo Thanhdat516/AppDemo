@@ -36,11 +36,12 @@ namespace DemoApp.Controllers
                     SameSite = SameSiteMode.None,
                     Secure = true,
                 });
+                return Ok(ResponseToken);
             }
-            return Ok(ResponseToken);
+            return BadRequest(ResponseToken);
         }
 
-        [AllowAnonymous]
+        [Authorize]
         [HttpGet("logout")]
         public async Task<IActionResult> Logout()
         {
@@ -63,6 +64,7 @@ namespace DemoApp.Controllers
 
                 if (response.IsSuccessStatusCode)
                 {
+                    Response.Cookies.Delete("refresh_token");
                     return Ok(new { message = "Logout successful" });
                 }
                 else

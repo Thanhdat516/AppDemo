@@ -14,23 +14,29 @@ namespace Business_Logic_Layer.Services
         private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
         private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public UserService(IUserRepository userRepository, HttpClient httpClient, IConfiguration configuration)
+
+        public UserService(IUserRepository userRepository, HttpClient httpClient, IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             _userRepository = userRepository;
             var _configCompany = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>().ReverseMap());
             _UserMapper = new Mapper(_configCompany);
             _httpClient = httpClient;
             _configuration = configuration;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<ApiResponseModel> ValidateLogin(UserModel model)
         {
-            List<User> userEntity = await _userRepository.getUsers();
 
-            List<UserModel> userModel = _UserMapper.Map<List<UserModel>>(userEntity);
+            /*            List<User> userEntity = await _userRepository.getUsers();
 
-            var checkUser = userModel.SingleOrDefault(u => u.UserName == model.UserName && u.Password == model.Password);
+                        List<UserModel> userModel = _UserMapper.Map<List<UserModel>>(userEntity);*/
+
+            /*var checkUser = model.SingleOrDefault(u => u.UserName == model.UserName && u.Password == model.Password);*/
+
+            var checkUser = await getInfoUser(model);
 
             if (checkUser == null)
             {
@@ -45,11 +51,15 @@ namespace Business_Logic_Layer.Services
             {
                 Success = true,
                 Message = "Authenticate success",
-                Data = GenerateToken().Result
+                Data = new TokenModel
+                {
+                    AccessToken = checkUser.AccessToken,
+                    RefreshToken = checkUser.RefreshToken,
+                }
             };
         }
 
-        public async Task<TokenModel> GenerateToken()
+        public async Task<TokenModel> getInfoUser(UserModel user)
         {
             var discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync(_configuration["Keycloak:auth-server-url"] + $"realms/{_configuration["Keycloak:realm"]}/");
 
@@ -63,13 +73,13 @@ namespace Business_Logic_Layer.Services
                 Address = discoveryDocument.TokenEndpoint,
                 ClientId = "MyClient",
                 ClientSecret = "2mYkbk2k9Tv3eA7RC2jFGBsXUGs3rBdT",
-                UserName = "demoapp",
-                Password = "admin123"
+                UserName = user.Username,
+                Password = user.Password
             });
 
             if (tokenResponse.IsError)
             {
-                throw new Exception("Token request error: " + tokenResponse.Error);
+                return null;
             }
 
             TokenModel token = new TokenModel

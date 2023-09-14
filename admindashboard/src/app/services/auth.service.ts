@@ -32,7 +32,6 @@ export class AuthService implements OnInit {
   }
 
    public LogoutByRefreshToken(): Observable<any> {
-    this.logOut();
     return this.http.get<any>(`${environment.apiUrl}/${this.urlUser}/${this.Logout}`);
   }
   

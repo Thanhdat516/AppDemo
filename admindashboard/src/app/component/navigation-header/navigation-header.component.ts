@@ -12,7 +12,7 @@ export class NavigationHeaderComponent {
   constructor(private authService: AuthService, private alertify: AlertifyService) {}
 
   handleLogOut() {
-    this.authService.LogoutByRefreshToken().subscribe();
+    this.authService.LogoutByRefreshToken().subscribe({next: () => {this.authService.logOut()}});
     this.alertify.success("Logout successful")
   }
 }
