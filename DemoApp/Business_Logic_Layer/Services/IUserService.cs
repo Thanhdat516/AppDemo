@@ -5,7 +5,5 @@ namespace Business_Logic_Layer.Services
     public interface IUserService
     {
         public Task<ApiResponseModel> ValidateLogin(UserModel model);
-
-        public string GenerateToken(UserModel model);
     }
 }

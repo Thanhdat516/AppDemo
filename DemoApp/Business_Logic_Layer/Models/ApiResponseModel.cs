@@ -6,6 +6,6 @@
 
         public string Message { get; set; }
 
-        public object Data { get; set; }
+        public TokenModel Data { get; set; }
     }
 }

@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         {
             if(result.success && result.data.accessToken) {
                 this.date = Math.floor((new Date().getTime() / 1000));
-                this.alertify.success("Login successful");
+                this.alertify.success("Login successfully");
                 this.router.navigate(["company"]);
                 this.authService.storeToken(result.data.accessToken);
                 this.decodedToken = this.jwtHelperService.decodeToken(result.data.accessToken);

@@ -35,6 +35,6 @@ export class AddcompanyComponent implements OnInit {
     }
     this.AppService.createCompany(this.valueCompany).subscribe((companies: Company[]) => this.companyUpdated.emit(companies));
     window.location.reload()
-    this.alertify.success("Created successful");
+    this.alertify.success("Created successfully");
   }
 }

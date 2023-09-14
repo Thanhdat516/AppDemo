@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Business_Logic_Layer",
+    "\\Business_Logic_Layer\\Services",
+    "\\DemoApp",
+    "\\DemoApp\\Controllers"
+  ],
+  "SelectedNode": "\\DemoApp\\Controllers\\UserController.cs",
+  "PreviewInSolutionExplorer": false
+}

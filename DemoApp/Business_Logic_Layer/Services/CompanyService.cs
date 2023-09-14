@@ -2,12 +2,11 @@
 using Business_Logic_Layer.Models;
 using Data_Access_Layer.Entities;
 using Data_Access_Layer.Repository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Business_Logic_Layer.Services
 {
-    public class CompanyService : ControllerBase, ICompanyService
+    public class CompanyService : ICompanyService
     {
         private readonly Mapper _CompanyMapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -40,30 +39,33 @@ namespace Business_Logic_Layer.Services
                     return companyModel;
                 }*/
 
-        public async Task<IActionResult> CreateCompany(CompanyModel company)
+        public async Task<bool?> CreateCompany(CompanyModel company)
         {
             await _unitOfWork.BeginTransactionAsync();
             try
             {
                 Company companyEntity = _CompanyMapper.Map<Company>(company);
                 await _unitOfWork.CompanyRepository.Add(companyEntity);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
-                _logger.LogInformation("Adding a new name company: ", company.NameCompany);
-                _logger.LogInformation("Adding a new address company: ", company.AddressCompany);
-                _logger.LogInformation("Adding a new phone company: ", company.PhoneCompany);
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
+                    _logger.LogInformation("Adding a new name company: ", company.NameCompany);
+                    _logger.LogInformation("Adding a new address company: ", company.AddressCompany);
+                    _logger.LogInformation("Adding a new phone company: ", company.PhoneCompany);
 
-                return Ok("Data processed successfully within the transaction.");
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the company: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the company.");
+                return null;
             }
         }
 
-        public async Task<IActionResult> UpdateCompany(CompanyModel company)
+        public async Task<bool?> UpdateCompany(CompanyModel company)
         {
             await _unitOfWork.BeginTransactionAsync();
             try
@@ -71,7 +73,7 @@ namespace Business_Logic_Layer.Services
                 var existingCompany = await _unitOfWork.CompanyRepository.GetByIdAsync(company.CompanyID);
                 if (existingCompany == null)
                 {
-                    return NotFound();
+                    return false;
                 }
                 Company companyEntity = _CompanyMapper.Map<Company>(existingCompany);
 
@@ -80,20 +82,23 @@ namespace Business_Logic_Layer.Services
                 companyEntity.PhoneCompany = company.PhoneCompany;
 
                 await _unitOfWork.CompanyRepository.Update(companyEntity);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
 
-                return Ok("Update successful");
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the company: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the company.");
+                return null;
             }
         }
 
-        public async Task<IActionResult> DeleteCompany(int id)
+        public async Task<bool?> DeleteCompany(int id)
         {
             await _unitOfWork.BeginTransactionAsync();
             try
@@ -101,19 +106,22 @@ namespace Business_Logic_Layer.Services
                 var existingCompanyID = await _unitOfWork.CompanyRepository.GetByIdAsync(id);
                 if (existingCompanyID == null)
                 {
-                    return NotFound();
+                    return false;
                 }
                 await _unitOfWork.CompanyRepository.Delete(id);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
-                _logger.LogInformation("Delete a company with CompanyID ", existingCompanyID);
-                return Ok("Delete successful");
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
+                    _logger.LogInformation("Delete a company with CompanyID ", existingCompanyID);
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the company: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the company.");
+                return null;
             }
         }
 

@@ -2,12 +2,11 @@
 using Business_Logic_Layer.Models;
 using Data_Access_Layer.Entities;
 using Data_Access_Layer.Repository;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace Business_Logic_Layer.Services
 {
-    public class EmployeeService : ControllerBase, IEmployeeService
+    public class EmployeeService : IEmployeeService
     {
         private readonly Mapper _EmployeeMapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -41,31 +40,33 @@ namespace Business_Logic_Layer.Services
                     return companyModel;
                 }*/
 
-        public async Task<IActionResult> CreateEmployee(EmployeeModel employee)
+        public async Task<bool?> CreateEmployee(EmployeeModel employee)
         {
             await _unitOfWork.BeginTransactionAsync();
             try
             {
                 Employee employeeEntity = _EmployeeMapper.Map<Employee>(employee);
                 await _unitOfWork.EmployeeRepository.Add(employeeEntity);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
-                _logger.LogInformation("Adding a new name employee: ", employee.NameEmployee);
-                _logger.LogInformation("Adding a new address employee: ", employee.AddressEmployee);
-                _logger.LogInformation("Adding a new phone employee: ", employee.PhoneEmployee);
-                _logger.LogInformation("Adding a new phone employee: ", employee.CompanyID);
-
-                return Ok("Data processed successfully within the transaction.");
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
+                    _logger.LogInformation("Adding a new name employee: ", employee.NameEmployee);
+                    _logger.LogInformation("Adding a new address employee: ", employee.AddressEmployee);
+                    _logger.LogInformation("Adding a new phone employee: ", employee.PhoneEmployee);
+                    _logger.LogInformation("Adding a new phone employee: ", employee.CompanyID);
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the company: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the company.");
+                return null;
             }
         }
 
-        public async Task<IActionResult> UpdateEmployee(EmployeeModel employee)
+        public async Task<bool?> UpdateEmployee(EmployeeModel employee)
         {
             /*            Employee employeeEntity = _EmployeeMapper.Map<Employee>(employee);
 
@@ -77,7 +78,7 @@ namespace Business_Logic_Layer.Services
                 var existingEmployee = await _unitOfWork.EmployeeRepository.GetByIdAsync(employee.EmployeeID);
                 if (existingEmployee == null)
                 {
-                    return NotFound();
+                    return false;
                 }
                 Employee employeeEntity = _EmployeeMapper.Map<Employee>(existingEmployee);
 
@@ -87,20 +88,22 @@ namespace Business_Logic_Layer.Services
                 employeeEntity.CompanyID = employee.CompanyID;
 
                 await _unitOfWork.EmployeeRepository.Update(employeeEntity);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
-
-                return Ok("Update successful");
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the employee: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the employee.");
+                return null;
             }
         }
 
-        public async Task<IActionResult> DeleteEmployee(int id)
+        public async Task<bool?> DeleteEmployee(int id)
         {
             await _unitOfWork.BeginTransactionAsync();
             try
@@ -108,19 +111,22 @@ namespace Business_Logic_Layer.Services
                 var existingEmployeeID = await _unitOfWork.EmployeeRepository.GetByIdAsync(id);
                 if (existingEmployeeID == null)
                 {
-                    return NotFound();
+                    return false;
                 }
                 await _unitOfWork.EmployeeRepository.Delete(id);
-                await _unitOfWork.SaveChangesAsync();
-                await _unitOfWork.CommitTransactionAsync();
-                _logger.LogInformation("Delete a company with CompanyID ", existingEmployeeID);
-                return Ok("Delete successful");
+                if (await _unitOfWork.SaveChangesAsync() > 0)
+                {
+                    await _unitOfWork.CommitTransactionAsync();
+                    _logger.LogInformation("Delete a company with CompanyID ", existingEmployeeID);
+                    return true;
+                }
+                return false;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "An error occurred while adding the employee: {ErrorMessage}", ex.Message);
                 await _unitOfWork.RollbackTransactionAsync();
-                return StatusCode(500, "An error occurred while adding the employee.");
+                return null;
             }
         }
     }

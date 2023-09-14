@@ -21,12 +21,12 @@ namespace DemoApp.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CompanyModel>>> GetCompanies()
         {
-            var companies = await _bllCompany.GetCompanies();
-            if (companies == null)
+            var isListed = await _bllCompany.GetCompanies();
+            if (isListed == null)
             {
-                return NotFound();
+                return BadRequest();
             }
-            return Ok(companies);
+            return Ok(isListed);
         }
 
         /*        [HttpGet]
@@ -45,38 +45,38 @@ namespace DemoApp.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateCompany(CompanyModel company)
         {
-            var companies = await _bllCompany.CreateCompany(company);
-            if (companies is null)
+            var isCreated = await _bllCompany.CreateCompany(company);
+            if (isCreated is null || isCreated is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(companies);
+            return Ok("Created successfully");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateCompany(CompanyModel company)
         {
-            var companies = await _bllCompany.UpdateCompany(company);
-            if (companies is null)
+            var isUpdated = await _bllCompany.UpdateCompany(company);
+            if (isUpdated is null || isUpdated is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(companies);
+            return Ok("Updated successfully");
         }
 
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCompany(int id)
         {
-            var companies = await _bllCompany.DeleteCompany(id);
-            if (companies is null)
+            var isDeleted = await _bllCompany.DeleteCompany(id);
+            if (isDeleted is null || isDeleted is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(companies);
+            return Ok("Deleted successfully");
         }
 
         /*        [HttpGet("{id}")]

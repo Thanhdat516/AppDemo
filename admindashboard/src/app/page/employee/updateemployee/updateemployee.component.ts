@@ -46,6 +46,6 @@ constructor(private appService: AppService, private router: Router, private aler
     }
     this.appService.updateEmployee(this.dataNew).subscribe((employee: Employee[]) => this.employeeUpdated.emit(employee));
     this.router.navigate(["employee"]);
-    this.alertify.success("Updated successful")
+    this.alertify.success("Updated successfully")
   }
 }

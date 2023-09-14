@@ -20,48 +20,48 @@ namespace DemoApp.Controllers
         [HttpGet]
         public async Task<ActionResult<List<EmployeeModel>>> GetEmployees()
         {
-            var employees = await _bllEmployee.GetEmployees();
-            if (employees is null)
+            var isListed = await _bllEmployee.GetEmployees();
+            if (isListed is null)
             {
-                return NotFound();
+                return BadRequest();
             }
-            return Ok(employees);
+            return Ok(isListed);
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateEmployee(EmployeeModel employee)
         {
-            var employees = await _bllEmployee.CreateEmployee(employee);
-            if (employees is null)
+            var isCreated = await _bllEmployee.CreateEmployee(employee);
+            if (isCreated is null || isCreated is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(employees);
+            return Ok("Created successfully");
         }
 
         [HttpPut]
         public async Task<IActionResult> UpdateEmployee(EmployeeModel employee)
         {
-            var employees = await _bllEmployee.UpdateEmployee(employee);
-            if (employees is null)
+            var isUpdated = await _bllEmployee.UpdateEmployee(employee);
+            if (isUpdated is null || isUpdated is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(employees);
+            return Ok("Updated successfully");
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteEmployee(int id)
         {
-            var employees = await _bllEmployee.DeleteEmployee(id);
-            if (employees is null)
+            var isDeleted = await _bllEmployee.DeleteEmployee(id);
+            if (isDeleted is null || isDeleted is false)
             {
-                return NotFound();
+                return BadRequest();
             }
 
-            return Ok(employees);
+            return Ok("Deleted successfully");
         }
     }
 }

@@ -45,6 +45,6 @@ export class AddemployeeComponent {
     }
     this.AppService.createEmployee(this.valueEmployee).subscribe((employees: Employee[]) => this.employeeUpdated.emit(employees));
     window.location.reload()
-    this.alertify.success("Created successful");
+    this.alertify.success("Created successfully");
   }
 }

@@ -2,26 +2,26 @@
 using Business_Logic_Layer.Models;
 using Data_Access_Layer.Entities;
 using Data_Access_Layer.Repository;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
+using IdentityModel.Client;
+using Microsoft.Extensions.Configuration;
+
 
 namespace Business_Logic_Layer.Services
 {
     public class UserService : IUserService
     {
         private readonly Mapper _UserMapper;
-        private readonly AppSettingModel _appSetting;
+        private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
+        private readonly HttpClient _httpClient;
 
-        public UserService(IUserRepository userRepository, IOptionsMonitor<AppSettingModel> optionsMonitor)
+        public UserService(IUserRepository userRepository, HttpClient httpClient, IConfiguration configuration)
         {
             _userRepository = userRepository;
             var _configCompany = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>().ReverseMap());
             _UserMapper = new Mapper(_configCompany);
-            _appSetting = optionsMonitor.CurrentValue;
+            _httpClient = httpClient;
+            _configuration = configuration;
         }
 
         public async Task<ApiResponseModel> ValidateLogin(UserModel model)
@@ -45,35 +45,40 @@ namespace Business_Logic_Layer.Services
             {
                 Success = true,
                 Message = "Authenticate success",
-                Data = GenerateToken(checkUser)
+                Data = GenerateToken().Result
             };
         }
 
-        public string GenerateToken(UserModel user)
+        public async Task<TokenModel> GenerateToken()
         {
-            var claims = new List<Claim>
-            {
+            var discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync(_configuration["Keycloak:auth-server-url"] + $"realms/{_configuration["Keycloak:realm"]}/");
 
-                new Claim(JwtRegisteredClaimNames.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.NameId, Guid.NewGuid().ToString()),
-                new Claim(JwtRegisteredClaimNames.Iss, _appSetting.Issuer),
-                new Claim(JwtRegisteredClaimNames.Aud, _appSetting.Audience)
+            if (discoveryDocument.IsError)
+            {
+                throw new Exception("Discovery document error: " + discoveryDocument.Error);
+            }
+
+            var tokenResponse = await _httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
+            {
+                Address = discoveryDocument.TokenEndpoint,
+                ClientId = "MyClient",
+                ClientSecret = "2mYkbk2k9Tv3eA7RC2jFGBsXUGs3rBdT",
+                UserName = "demoapp",
+                Password = "admin123"
+            });
+
+            if (tokenResponse.IsError)
+            {
+                throw new Exception("Token request error: " + tokenResponse.Error);
+            }
+
+            TokenModel token = new TokenModel
+            {
+                AccessToken = tokenResponse.AccessToken,
+                RefreshToken = tokenResponse.RefreshToken,
             };
 
-
-            var SecretKey = Encoding.UTF8.GetBytes(_appSetting.SecretKey);
-
-            var tokenDescription = new SecurityTokenDescriptor
-            {
-                Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.UtcNow.AddMinutes(5),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(SecretKey), SecurityAlgorithms.HmacSha512Signature)
-            };
-            var tokenHandler = new JwtSecurityTokenHandler();
-
-            var token = tokenHandler.CreateJwtSecurityToken(tokenDescription);
-
-            return tokenHandler.WriteToken(token);
+            return token;
         }
     }
 }
