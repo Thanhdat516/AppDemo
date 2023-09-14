@@ -1,7 +1,4 @@
-﻿using AutoMapper;
-using Business_Logic_Layer.Models;
-using Data_Access_Layer.Entities;
-using Data_Access_Layer.Repository;
+﻿using Business_Logic_Layer.Models;
 using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 
@@ -10,33 +7,27 @@ namespace Business_Logic_Layer.Services
 {
     public class UserService : IUserService
     {
-        private readonly Mapper _UserMapper;
         private readonly IConfiguration _configuration;
-        private readonly IUserRepository _userRepository;
         private readonly HttpClient _httpClient;
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string secret;
+        private readonly string clientID;
+        private readonly string authServerURL;
+        private readonly string realm;
 
 
-        public UserService(IUserRepository userRepository, HttpClient httpClient, IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public UserService(HttpClient httpClient, IConfiguration configuration)
         {
-            _userRepository = userRepository;
-            var _configCompany = new MapperConfiguration(cfg => cfg.CreateMap<User, UserModel>().ReverseMap());
-            _UserMapper = new Mapper(_configCompany);
             _httpClient = httpClient;
             _configuration = configuration;
-            _httpClientFactory = httpClientFactory;
+            secret = _configuration["Keycloak:credentials:secret"];
+            clientID = _configuration["Keycloak:resource"];
+            authServerURL = _configuration["Keycloak:auth-server-url"];
+            realm = _configuration["Keycloak:realm"];
         }
 
         public async Task<ApiResponseModel> ValidateLogin(UserModel model)
         {
-
-            /*            List<User> userEntity = await _userRepository.getUsers();
-
-                        List<UserModel> userModel = _UserMapper.Map<List<UserModel>>(userEntity);*/
-
-            /*var checkUser = model.SingleOrDefault(u => u.UserName == model.UserName && u.Password == model.Password);*/
-
-            var checkUser = await getInfoUser(model);
+            var checkUser = await GetToken(model);
 
             if (checkUser == null)
             {
@@ -59,9 +50,9 @@ namespace Business_Logic_Layer.Services
             };
         }
 
-        public async Task<TokenModel> getInfoUser(UserModel user)
+        public async Task<TokenModel> GetToken(UserModel user)
         {
-            var discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync(_configuration["Keycloak:auth-server-url"] + $"realms/{_configuration["Keycloak:realm"]}/");
+            var discoveryDocument = await _httpClient.GetDiscoveryDocumentAsync(authServerURL + $"realms/{realm}/");
 
             if (discoveryDocument.IsError)
             {
@@ -71,8 +62,8 @@ namespace Business_Logic_Layer.Services
             var tokenResponse = await _httpClient.RequestPasswordTokenAsync(new PasswordTokenRequest
             {
                 Address = discoveryDocument.TokenEndpoint,
-                ClientId = "MyClient",
-                ClientSecret = "2mYkbk2k9Tv3eA7RC2jFGBsXUGs3rBdT",
+                ClientId = clientID,
+                ClientSecret = secret,
                 UserName = user.Username,
                 Password = user.Password
             });

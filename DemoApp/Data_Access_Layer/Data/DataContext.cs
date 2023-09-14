@@ -9,7 +9,6 @@ namespace Data_Access_Layer.Data
 
         public DbSet<Company> Companies => Set<Company>();
         public DbSet<Employee> Employees => Set<Employee>();
-        public DbSet<User> Users => Set<User>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -21,8 +20,6 @@ namespace Data_Access_Layer.Data
                 .WithMany(a => a.Employees)
                 .HasForeignKey(e => e.CompanyID)
                 .OnDelete(DeleteBehavior.SetNull);
-            modelBuilder.Entity<User>()
-                .HasIndex(e => e.UserName).IsUnique();
         }
     }
 }
