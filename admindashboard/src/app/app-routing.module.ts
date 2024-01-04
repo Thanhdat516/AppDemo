@@ -10,7 +10,7 @@ import { LoginComponent } from './component/login/login.component';
 import { BodyComponent } from './component/body/body.component';
 import { AccessdeniedComponent } from './page/access-denied/accessdenied/accessdenied.component';
 import { authGuard } from './guards/auth.guard';
-import { KeycloakAuthGuard } from 'keycloak-angular'
+import { KeycloakAuthGuard } from 'keycloak-angular';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,15 +19,39 @@ const routes: Routes = [
     path: '',
     component: BodyComponent,
     children: [
-      { path: 'company', component: CompanyComponent, canActivate: [authGuard] },
-      { path: 'employee', component: EmployeeComponent, canActivate: [authGuard]  },
-      { path: 'addcompany', component: AddcompanyComponent, canActivate: [authGuard]  },
-      { path: 'updatecompany', component: UpdatecompanyComponent, canActivate: [authGuard]},
-      { path: 'addemployee', component: AddemployeeComponent, canActivate: [authGuard]  },
-      { path: 'updateemployee', component: UpdateemployeeComponent, canActivate: [authGuard]},
+      {
+        path: 'company',
+        component: CompanyComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'employee',
+        component: EmployeeComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'addcompany',
+        component: AddcompanyComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'updatecompany',
+        component: UpdatecompanyComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'addemployee',
+        component: AddemployeeComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'updateemployee',
+        component: UpdateemployeeComponent,
+        canActivate: [authGuard],
+      },
     ],
   },
-  { path: 'accessdenid', component: AccessdeniedComponent},
+  { path: 'accessdenid', component: AccessdeniedComponent },
 ];
 
 @NgModule({

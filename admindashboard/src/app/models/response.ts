@@ -1,7 +1,7 @@
 import { Token } from "./token";
 
 export class Response {
-    success? = "";
+    success?: boolean ;
     message? = "";
     data: Token = {};
 }

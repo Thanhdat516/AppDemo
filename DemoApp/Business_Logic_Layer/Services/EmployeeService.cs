@@ -68,10 +68,6 @@ namespace Business_Logic_Layer.Services
 
         public async Task<bool?> UpdateEmployee(EmployeeModel employee)
         {
-            /*            Employee employeeEntity = _EmployeeMapper.Map<Employee>(employee);
-
-                        return await _employeeRepository.UpdateEmployee(employeeEntity);*/
-
             await _unitOfWork.BeginTransactionAsync();
             try
             {

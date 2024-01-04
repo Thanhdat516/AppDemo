@@ -24,12 +24,12 @@ export class AuthService implements OnInit {
   
   // Lấy api authentication user
   public AuthenticationUser(user: User) {
-    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}`, user); //
+    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}`, user); 
   }
 
-  public ValidateRefreshToken(): Observable<any> {
-    return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}/${this.urlCheckToken}`, {});
-  }
+  // public ValidateRefreshToken(): Observable<any> {
+  //   return this.http.post<any>(`${environment.apiUrl}/${this.urlUser}/${this.urlCheckToken}`, {});
+  // }
 
    public LogoutByRefreshToken(): Observable<any> {
     return this.http.get<any>(`${environment.apiUrl}/${this.urlUser}/${this.Logout}`);
